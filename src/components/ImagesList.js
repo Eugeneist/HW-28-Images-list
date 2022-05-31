@@ -5,7 +5,7 @@ import Button from '../components/Button';
 
 const StyledList = styled.ul`
 margin:0 auto;
-padding:0;
+padding:0 0 50px 0;
 text-align: center;
 list-style: none;
 display: grid;
@@ -46,6 +46,8 @@ const ImagesList = ( ) => {
         getMorePages();
     };
 
+    useEffect( () => { handleClick() }, []);
+
     useEffect( () => { getMorePages() }, []);
 
     if (isLoading) {
@@ -55,14 +57,13 @@ const ImagesList = ( ) => {
     return (
         <>
         <StyledList>
-            {images.map(({ id,download_url,author }) => (
-                 <li className="imageslist__item" key={id}> <img className="imageslist__image" src={download_url}/> Author: {author} </li>
+            {images.map(({ id,download_url }) => (
+                 <li className="imageslist__item" key={id}> <img className="imageslist__image" src={download_url}/></li>
             ))}
         </StyledList>
         <Button color="primary" size="large" onClick={handleClick}>Show More</Button>
         </>
     );
-
 
 };
 
