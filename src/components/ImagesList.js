@@ -1,31 +1,7 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import instance from "../helpers/Axios";
-import Button from '../components/Button';
-
-const StyledList = styled.ul`
-margin:0 auto;
-padding:0 0 50px 0;
-text-align: center;
-list-style: none;
-display: grid;
-grid-gap:25px;
-grid-template-columns: 1fr 1fr;
-
-.imageslist__image {
-    width:80%;
-}
-
-.imageslist__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin:0;
-    padding:0;
-}
-
-`;
+import Button from './Button';
+import List from "./List";
 
 const ImagesList = ( ) => {
 
@@ -56,11 +32,11 @@ const ImagesList = ( ) => {
 
     return (
         <>
-        <StyledList>
+        <List>
             {images.map(({ id,download_url }) => (
                  <li className="imageslist__item" key={id}> <img className="imageslist__image" src={download_url}/></li>
             ))}
-        </StyledList>
+        </List>
         <Button color="primary" size="large" onClick={handleClick}>Show More</Button>
         </>
     );
