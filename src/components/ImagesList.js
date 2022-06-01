@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import instance from "../helpers/Axios";
+import instance from "../helpers/axios";
 import Button from './Button';
 import List from "./List";
 
@@ -8,23 +8,20 @@ const ImagesList = ( ) => {
     const [images, setImages] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);
 
     const getMorePages = () => {
-        instance.get(`/list?page=${page}&limit=${limit}`).then((data) => {
-            setImages(data);
+        instance.get(`/list`, {params: { page: `${page}`, limit: 10 }}).then((data) => {
+            setImages([...images, ...data]);
             setLoading(false);
         });
+
     }
 
     const handleClick = () => {
-        setLimit(limit + 10);
-        getMorePages();
+        setPage((page) => page + 1);
     };
 
-    useEffect( () => { handleClick() }, []);
-
-    useEffect( () => { getMorePages() }, []);
+    useEffect( () => { getMorePages() }, [page]);
 
     if (isLoading) {
         return <p>Loading...</p>;

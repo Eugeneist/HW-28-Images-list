@@ -4,7 +4,7 @@ import ImagesList from './components/ImagesList';
 function App() {
   return (
     <div className="App">
-      <ImagesList></ImagesList>
+      <ImagesList/>
     </div>
   );
 }
