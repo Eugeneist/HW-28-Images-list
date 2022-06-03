@@ -12,7 +12,7 @@ const ImagesList = ( ) => {
     useEffect( () => { 
         setLoading(true);
         axios.get(`/list`, {params: { page , limit: 10 }}).then((data) => {
-            setImages((images) => [...images, ...data]);
+            setImages((prevImages) => [...prevImages, ...data]);
             setLoading(false);
         });
     }, [page]);
